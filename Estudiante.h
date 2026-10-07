@@ -1,0 +1,13 @@
+//
+// Created by jadel on 07/10/2026.
+//
+
+#ifndef ACTIVIDADCOLABORATIVA2_ESTUDIANTE_H
+#define ACTIVIDADCOLABORATIVA2_ESTUDIANTE_H
+
+
+class Estudiante {
+};
+
+
+#endif //ACTIVIDADCOLABORATIVA2_ESTUDIANTE_H

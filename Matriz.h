@@ -1,0 +1,13 @@
+//
+// Created by jadel on 07/10/2026.
+//
+
+#ifndef ACTIVIDADCOLABORATIVA2_MATRIZ_H
+#define ACTIVIDADCOLABORATIVA2_MATRIZ_H
+
+
+class Matriz {
+};
+
+
+#endif //ACTIVIDADCOLABORATIVA2_MATRIZ_H
