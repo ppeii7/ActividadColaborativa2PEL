@@ -4,9 +4,18 @@
 
 #ifndef ACTIVIDADCOLABORATIVA2_PROFESOR_H
 #define ACTIVIDADCOLABORATIVA2_PROFESOR_H
+#include "Estudiante.h"
+#include "ListaGenerica.h"
+#include "Usuario.h"
 
 
-class Profesor {
+class Profesor : public Usuario {
+
+private:
+    ListaGenerica<Estudiante> clase;
+public:
+
+
 };
 
 

@@ -4,9 +4,18 @@
 
 #ifndef ACTIVIDADCOLABORATIVA2_ESTUDIANTE_H
 #define ACTIVIDADCOLABORATIVA2_ESTUDIANTE_H
+#include "Usuario.h"
 
 
-class Estudiante {
+class Estudiante : public Usuario {
+
+private:
+
+
+
+public:
+
+
 };
 
 
