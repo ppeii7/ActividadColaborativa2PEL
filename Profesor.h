@@ -15,6 +15,9 @@ private:
     ListaGenerica<Estudiante> clase;
 public:
 
+    Profesor();
+
+    
 
 };
 

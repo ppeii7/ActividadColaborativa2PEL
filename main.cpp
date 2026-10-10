@@ -1,18 +1,62 @@
 #include <iostream>
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
-int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
 
-    const auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+void menuAdministrator() {
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
+}
+
+void menuProfesor() {
+    std:: cout << "Bienvenido profesor  " <<std::endl;
+}
+
+void menuEstudiante() {
+
+}
+
+void printMenuPrincipal() {
+
+    std:: cout << "MENÚ PRINCIPAL" << std::endl;
+    std:: cout << "============================" << std::endl;
+
+    std:: string id;
+    std:: cout << "Ingrese su id: " << std::endl;
+    std:: cin >> id;
+    int opcion;
+
+    if (id.contains('a')){
+        opcion = 1;
+    }else if (id.contains('p')) {
+        opcion = 2;
+    }else if (id.contains('e')) {
+        opcion = 3;
     }
 
+
+    switch (opcion) {
+        case (1) :
+            menuAdministrator();
+            break;
+        case 2:
+            menuProfesor();
+            break;
+        case 3:
+            menuEstudiante();
+            break;
+
+        default:
+            std::cout << "Opcion no valida." << std::endl;
+            break;
+    }
+
+}
+
+
+
+
+
+
+int main() {
+
     return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
 }

@@ -21,6 +21,7 @@ public:
     std::string getId();
     std::string getNombre();
     std::string getApellido();
+    std::string toString();
 };
 
 

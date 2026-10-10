@@ -6,7 +6,7 @@
 
 
 Usuario:: Usuario() {
-    this->id = "";
+    this->id = 0;
     this->nombre = "";
     this->apellido = "";
 }
@@ -27,4 +27,8 @@ std::string Usuario:: getNombre() {
 
 std::string Usuario:: getApellido() {
     return this->apellido;
+}
+
+std::string Usuario:: toString() {
+    return "Nombre: " + this->nombre + ", apellido: " + this->apellido;
 }
