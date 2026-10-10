@@ -16,4 +16,6 @@ add_executable(ActividadColaborativa2 main.cpp
         Fichero.h
         Matriz.cpp
         Matriz.h
+        ListaGenerica.cpp
+        ListaGenerica.h
 )
