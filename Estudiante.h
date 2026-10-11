@@ -11,9 +11,10 @@ class Estudiante : public Usuario {
 
 private:
 
-
-
 public:
+    Estudiante();
+    Estudiante(std:: string id, std::string nome, std:: string apellido);
+
 
 
 };

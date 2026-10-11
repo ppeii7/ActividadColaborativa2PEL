@@ -6,7 +6,7 @@
 
 
 Usuario:: Usuario() {
-    this->id = 0;
+    this->id = "";
     this->nombre = "";
     this->apellido = "";
 }

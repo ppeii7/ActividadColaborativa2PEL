@@ -4,16 +4,18 @@
 #ifndef ACTIVIDADCOLABORATIVA2_LISTAGENERICA_H
 #define ACTIVIDADCOLABORATIVA2_LISTAGENERICA_H
 
-template <typename T>
+template<typename T>
 class ListaGenerica {
 private:
-    T almacen[50];
+    T almacen[50]; //La posicion 0 del los contenedores debe d eesta siempre vacia
     int length;
+
 public:
     ListaGenerica();
-    void add(T nuevo);
+    bool add(T nuevo);//devuelve true/false, en base a si ha sido añadido correctamente
     void remove(int posicion);
     int getLength();
+    bool estaLlena();
     T& at(int position);
     void recorrer();
 };

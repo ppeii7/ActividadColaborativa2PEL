@@ -13,6 +13,7 @@ private:
     std:: string id;
     std:: string nombre;
     std::string apellido;
+    bool isAdmin;
 
 public:
 

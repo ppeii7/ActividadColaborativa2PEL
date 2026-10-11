@@ -3,3 +3,11 @@
 //
 
 #include "Estudiante.h"
+
+Estudiante::Estudiante() {
+    Usuario();
+}
+
+Estudiante::Estudiante(std:: string id, std::string nombre, std:: string apellido) {
+    Usuario(id,nombre, apellido);
+}
