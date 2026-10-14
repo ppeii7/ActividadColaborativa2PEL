@@ -18,42 +18,44 @@ Estudiante::Estudiante(std::string id, std::string nombre, std::string apellido)
 
 int Estudiante::buscarAsignatura(std::string asignatura) {
     for (int i = 1; i <= this->asignaturas.getLength(); i++) {
+        int aux;
         if (this->asignaturas.at(i) == asignatura) {
-            return i;
+            aux=i;
         }
+        return aux;
     }
     return -1;
 }
 
-bool Estudiante::addNota(std::string asignatura, Nota nota) {
+bool Estudiante::addNota(std::string asignatura, double nota) {
+    bool aux=true;
+    int pos = this->buscarAsignatura(asignatura);
     if (nota < 0 || nota > 10) {
         std::cout << "Nota invalida (debe estar entre 0 y 10)" << std::endl;
-        return false;
-    }
-
-    int pos = this->buscarAsignatura(asignatura);
-    if (pos != -1) {
+        aux = false;
+    }else if (pos != -1){
         this->notas.at(pos) = nota; // La asignatura ya existe: se actualiza su nota
-        return true;
-    }
-
-    if (this->asignaturas.estaLlena()) {
+        aux = true;
+    }else if (this->asignaturas.estaLlena()) {
         std::cout << "No caben mas asignaturas" << std::endl;
-        return false;
+        aux = false;
+    }else{ // Las dos listas se modifican siempre juntas para que no se descuadren
+        this->asignaturas.add(asignatura);
+        this->notas.add(nota);
     }
 
-    // Las dos listas se modifican siempre juntas para que no se descuadren
-    this->asignaturas.add(asignatura);
-    this->notas.add(nota);
-    return true;
+    return aux;
 }
 
-Nota Estudiante::getNota(std::string asignatura) {
+double Estudiante::getNota(std::string asignatura) {
     int pos = this->buscarAsignatura(asignatura);
+    int aux;
     if (pos == -1) {
-        return -1;
+       aux= -1;
+    }else{
+        aux = this->notas.at(pos);
     }
-    return this->notas.at(pos);
+    return aux;
 }
 
 int Estudiante::getNumAsignaturas() {
