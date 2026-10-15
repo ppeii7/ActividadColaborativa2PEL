@@ -25,7 +25,7 @@ int Estudiante::buscarAsignatura(std::string asignatura) {
     return -1;
 }
 
-bool Estudiante::addNota(std::string asignatura, Nota nota) {
+bool Estudiante::addNota(std::string asignatura, double nota) {
     if (nota < 0 || nota > 10) {
         std::cout << "Nota invalida (debe estar entre 0 y 10)" << std::endl;
         return false;
@@ -48,7 +48,7 @@ bool Estudiante::addNota(std::string asignatura, Nota nota) {
     return true;
 }
 
-Nota Estudiante::getNota(std::string asignatura) {
+double Estudiante::getNota(std::string asignatura) {
     int pos = this->buscarAsignatura(asignatura);
     if (pos == -1) {
         return -1;
