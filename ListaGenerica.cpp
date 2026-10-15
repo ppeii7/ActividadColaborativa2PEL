@@ -57,3 +57,12 @@ void ListaGenerica<T>::recorrer() {
         std::cout << i << ": " << almacen[i] << std::endl;
     }
 }
+
+template<typename T>
+void ListaGenerica<T>::modLista(int posicion, T valor) {
+    if (posicion > 0 && posicion < length) {
+        almacen[posicion] = valor;
+    } else {
+        std::cout << "Posicion invalida" << std::endl;
+    }
+}
