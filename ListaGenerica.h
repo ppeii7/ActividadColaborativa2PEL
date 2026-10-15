@@ -17,7 +17,7 @@ public:
     int getLength();
     bool estaLlena();
 
-    ::Profesor *at(int position);
+    T& at(int position);
     void recorrer();
     void modLista(int posicion, T valor);
 };

@@ -283,7 +283,6 @@ void menuAdministrator(ListaGenerica<Usuario*>& listaUsuarios, int& contadorId) 
             case 4: listarUsuarios(listaUsuarios); break;
             case 5: {
                 CalculadoraAvanzada<double> calc;
-                calc.menu();
                 break;
             }
             case 6: std::cout << "Cerrando sesion..." << std::endl; break;
@@ -312,7 +311,6 @@ void menuProfesor(Profesor* profesor, ListaGenerica<Usuario*>& listaUsuarios) {
             case 4: eliminarEstudianteDeClase(profesor); break;
             case 5: {
                 CalculadoraAvanzada<double> calc;
-                calc.menu();
                 break;
             }
             case 6: std::cout << "Cerrando sesion..." << std::endl; break;
@@ -341,7 +339,6 @@ void menuEstudiante(Estudiante* estudiante) {
             case 4: verContenidoFichero(estudiante); break;
             case 5: {
                 CalculadoraAvanzada<double> calc;
-                calc.menu();
                 break;
             }
             case 6: std::cout << "Cerrando sesion..." << std::endl; break;

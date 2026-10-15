@@ -1,7 +1,6 @@
 #include "ListaGenerica.h"
 #include <iostream>
 
-#include "Profesor.h"
 
 template<typename T>
 ListaGenerica<T>::ListaGenerica() {
@@ -45,7 +44,7 @@ bool ListaGenerica<T>::estaLlena(){
 }
 
 template<typename T>
-Profesor *ListaGenerica<T>::at(int position) {
+T& ListaGenerica<T>::at(int position) {
     if (position < 0 || position >= length) {
         std::cout << "Posicion invalida" << std::endl;
         return almacen[0];

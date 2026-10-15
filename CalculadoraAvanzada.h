@@ -25,5 +25,5 @@ public:
     T determinante(Matriz<ListaGenerica<T>> matriz);
 };
 
-// #include "CalculadoraAvanzada.cpp" // Me sale que lo tengo que meter pero si lo meto me da error en el otro archivo
+#include "CalculadoraAvanzada.cpp" // Me sale que lo tengo que meter pero si lo meto me da error en el otro archivo
 #endif //ACTIVIDADCOLABORATIVA2_CALCULADORAAVANZADA_H

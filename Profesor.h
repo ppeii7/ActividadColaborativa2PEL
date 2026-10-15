@@ -4,7 +4,6 @@
 
 #ifndef ACTIVIDADCOLABORATIVA2_PROFESOR_H
 #define ACTIVIDADCOLABORATIVA2_PROFESOR_H
-#include "Estudiante.h"
 #include "ListaGenerica.h"
 #include "Usuario.h"
 
