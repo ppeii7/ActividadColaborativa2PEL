@@ -6,8 +6,19 @@
 #define ACTIVIDADCOLABORATIVA2_FICHERO_H
 
 
-class Fichero {
-};
+#include <string>
 
+class Fichero {
+private:
+    std::string ruta;
+    std::string contenido;
+    bool cargado;
+public:
+    Fichero();
+    Fichero(std::string ruta);
+    bool estaCargado();
+    std::string getRuta();
+    std::string getContenido();
+};
 
 #endif //ACTIVIDADCOLABORATIVA2_FICHERO_H

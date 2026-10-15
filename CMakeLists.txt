@@ -4,7 +4,6 @@ project(ActividadColaborativa2)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(ActividadColaborativa2 main.cpp
-        CalculadoraAvanzada.cpp
         CalculadoraAvanzada.h
         Usuario.cpp
         Usuario.h
@@ -14,6 +13,5 @@ add_executable(ActividadColaborativa2 main.cpp
         Profesor.h
         Fichero.cpp
         Fichero.h
-        Matriz.cpp
         Matriz.h
 )

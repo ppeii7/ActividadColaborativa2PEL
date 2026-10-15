@@ -9,17 +9,22 @@
 #include "Usuario.h"
 
 
-class Profesor : public Usuario {
+class Profesor : public Usuario{
 
 private:
-    ListaGenerica<Estudiante> clase;
+ListaGenerica<std::string> clase;
+
+
+
 public:
+Profesor();
+Profesor(std::string id, std::string nombre, std::string apellido);
 
-    Profesor();
-    Profesor(std::string id, std::string nombre, std::string apellido);
-
-
-
+bool inscribirEstudiante(std::string idEstudiante);
+bool quitarEstudiante(std::string idEstudiante);
+bool tieneEstudiante(std::string idEstudiante);
+int getNumEstudiantes();
+std::string getIdEstudiante(int pos);
 };
 
 

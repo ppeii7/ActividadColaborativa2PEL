@@ -29,6 +29,16 @@ std::string Usuario:: getApellido() {
     return this->apellido;
 }
 
+void Usuario:: setNombre(std::string nombre) {
+    this->nombre = nombre;
+}
+
+void Usuario:: setApellido(std::string apellido) {
+
+    this->apellido = apellido;
+}
+
 std::string Usuario:: toString() {
     return "Nombre: " + this->nombre + ", apellido: " + this->apellido;
 }
+

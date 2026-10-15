@@ -1,6 +1,8 @@
 #include "ListaGenerica.h"
 #include <iostream>
 
+#include "Profesor.h"
+
 template<typename T>
 ListaGenerica<T>::ListaGenerica() {
     this->length = 1;
@@ -21,7 +23,7 @@ bool ListaGenerica<T>::add(T nuevo) {
 
 template<typename T>
 void ListaGenerica<T>::remove(int posicion) {
-    if (posicion < 0 || posicion >= length) {
+    if (posicion < 1 || posicion >= length) {
         std::cout << "Posicion invalida" << std::endl;
     } else {
         for (int i = posicion; i < length - 1; i++) {
@@ -43,7 +45,7 @@ bool ListaGenerica<T>::estaLlena(){
 }
 
 template<typename T>
-T& ListaGenerica<T>::at(int position) {
+Profesor *ListaGenerica<T>::at(int position) {
     if (position < 0 || position >= length) {
         std::cout << "Posicion invalida" << std::endl;
         return almacen[0];

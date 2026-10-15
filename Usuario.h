@@ -23,6 +23,8 @@ public:
     std::string getNombre();
     std::string getApellido();
     std::string toString();
+    void setNombre(std::string nombre);
+    void setApellido(std::string apellido);
 };
 
 
