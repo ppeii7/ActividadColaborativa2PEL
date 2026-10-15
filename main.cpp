@@ -17,6 +17,58 @@ Usuario* buscarUsuario(ListaGenerica<Usuario*>& listaUsuarios,std::string& id) {
     return nullptr;
 }
 
+std::string generarId(char rol, int& contador) {
+    std::string num = std::to_string(contador++);
+    while (num.size() < 4) num = "0" + num;
+    return std::string(1, rol) + num;
+}
+
+void altaUsuario(ListaGenerica<Usuario*>& usuarios, int& contadorId) {
+    if (usuarios.estaLlena()) {
+        std::cout << "No caben mas usuarios." << std::endl;
+        return;
+    }
+
+    int tipo = 0;
+    std::cout << "Tipo de usuario:" << std::endl;
+    std::cout << "1. Estudiante" << std::endl;
+    std::cout << "2. Profesor" << std::endl;
+    std::cout << "3. Administrador" << std::endl;
+    std::cout << "Opcion: ";
+    std::cin >> tipo;
+
+    if (tipo < 1 || tipo > 3) {
+        std::cout << "Tipo no valido." << std::endl;
+        return;
+    }
+
+    std::string nombre, apellido;
+    std::cout << "Nombre: ";
+    std::cin >> nombre;
+    std::cout << "Apellido: ";
+    std::cin >> apellido;
+
+    Usuario* nuevo = nullptr;
+    switch (tipo) {
+        case 1: nuevo = new Estudiante(generarId('E', contadorId), nombre, apellido); break;
+        case 2: nuevo = new Profesor(generarId('P', contadorId), nombre, apellido); break;
+        case 3: nuevo = new Usuario(generarId('A', contadorId), nombre, apellido); break;
+    }
+
+    if (!usuarios.add(nuevo)) {
+        delete nuevo;
+        std::cout << "No se pudo dar de alta." << std::endl;
+    } else {
+        std::cout << "Alta correcta. Id: " << nuevo->getId() << std::endl;
+    }
+}
+
+void darBajaUsuario(){
+
+}
+
+
+
 void menuAdministrator(ListaGenerica<Usuario*>& usuarios, int& contadorId) {
     int opcion = 0;
     do {
@@ -32,10 +84,10 @@ void menuAdministrator(ListaGenerica<Usuario*>& usuarios, int& contadorId) {
 
         switch (opcion) {
             case 1:
-
+                altaUsuario(usuarios, contadorId);
                 break;
             case 2:
-
+                darBajaUsuario();
                 break;
             case 3:
 
