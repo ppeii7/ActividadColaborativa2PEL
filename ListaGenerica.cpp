@@ -16,8 +16,9 @@ bool ListaGenerica<T>::add(T nuevo) {
     if (length < 50) {
         this->almacen[length++] = nuevo;
         retorno = true;
+    } else {
+        std::cout << "Lista llena" << std::endl;
     }
-    std::cout << "Lista llena" << std::endl;
     return retorno;
 }
 
