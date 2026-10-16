@@ -12,12 +12,13 @@ ListaGenerica<T>::ListaGenerica() {
 
 template<typename T>
 bool ListaGenerica<T>::add(T nuevo) {
+    bool retorno = false;
     if (length < 50) {
         this->almacen[length++] = nuevo;
-        return true;
+        retorno = true;
     }
     std::cout << "Lista llena" << std::endl;
-    return false;
+    return retorno;
 }
 
 template<typename T>
@@ -47,7 +48,7 @@ template<typename T>
 T& ListaGenerica<T>::at(int position) {
     if (position < 0 || position >= length) {
         std::cout << "Posicion invalida" << std::endl;
-        return almacen[0];
+        position = 0;
     }
     return almacen[position];
 }

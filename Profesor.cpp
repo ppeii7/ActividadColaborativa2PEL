@@ -12,25 +12,34 @@ Profesor::Profesor(std::string id, std::string nombre, std::string apellido) : U
 }
 
 bool Profesor::tieneEstudiante(std::string idEstudiante) {
+    bool retorno = false;
     for (int i = 1; i <= clase.getLength(); i++) {
-        if (clase.at(i) == idEstudiante) return true;
+        if (clase.at(i) == idEstudiante) {
+            retorno = true;
+        }
     }
-    return false;
+    return retorno;
 }
 
 bool Profesor::inscribirEstudiante(std::string idEstudiante) {
-    if (tieneEstudiante(idEstudiante)) return false;
-    return clase.add(idEstudiante);
+    bool retorno;
+    if (tieneEstudiante(idEstudiante)) {
+        retorno = false;
+    } else {
+        retorno = clase.add(idEstudiante);
+    }
+    return retorno;
 }
 
 bool Profesor::quitarEstudiante(std::string idEstudiante) {
+    bool retorno = false;
     for (int i = 1; i <= clase.getLength(); i++) {
         if (clase.at(i) == idEstudiante) {
             clase.remove(i);
-            return true;
+            retorno = true;
         }
     }
-    return false;
+    return retorno;
 }
 
 int Profesor::getNumEstudiantes() {

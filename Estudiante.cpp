@@ -17,43 +17,48 @@ Estudiante::Estudiante(std::string id, std::string nombre, std::string apellido)
 // ---------- Notas ----------
 
 int Estudiante::buscarAsignatura(std::string asignatura) {
+    int retorno = -1;
     for (int i = 1; i <= this->asignaturas.getLength(); i++) {
         if (this->asignaturas.at(i) == asignatura) {
-            return i;
+            retorno = i;
         }
     }
-    return -1;
+    return retorno;
 }
 
 bool Estudiante::addNota(std::string asignatura, double nota) {
+    bool retorno = true;
     if (nota < 0 || nota > 10) {
         std::cout << "Nota invalida (debe estar entre 0 y 10)" << std::endl;
-        return false;
+        retorno = false;
     }
 
     int pos = this->buscarAsignatura(asignatura);
     if (pos != -1) {
         this->notas.at(pos) = nota; // La asignatura ya existe: se actualiza su nota
-        return true;
+        retorno = true;
     }
 
     if (this->asignaturas.estaLlena()) {
         std::cout << "No caben mas asignaturas" << std::endl;
-        return false;
+        retorno = false;
     }
 
     // Las dos listas se modifican siempre juntas para que no se descuadren
     this->asignaturas.add(asignatura);
     this->notas.add(nota);
-    return true;
+    return retorno;
 }
 
 double Estudiante::getNota(std::string asignatura) {
+    double retorno;
     int pos = this->buscarAsignatura(asignatura);
     if (pos == -1) {
-        return -1;
+        retorno = -1;
+    } else {
+        retorno = this->notas.at(pos);
     }
-    return this->notas.at(pos);
+    return retorno;
 }
 
 int Estudiante::getNumAsignaturas() {
@@ -63,10 +68,10 @@ int Estudiante::getNumAsignaturas() {
 void Estudiante::mostrarNotas() {
     if (this->asignaturas.getLength() == 0) {
         std::cout << "Sin notas registradas" << std::endl;
-        return;
-    }
-    for (int i = 1; i <= this->asignaturas.getLength(); i++) {
-        std::cout << this->asignaturas.at(i) << ": " << this->notas.at(i) << std::endl;
+    } else {
+        for (int i = 1; i <= this->asignaturas.getLength(); i++) {
+            std::cout << this->asignaturas.at(i) << ": " << this->notas.at(i) << std::endl;
+        }
     }
 }
 
