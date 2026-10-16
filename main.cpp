@@ -11,6 +11,131 @@
 
 static bool fin = false;
 
+// ------------ CALCULADORA --------------
+
+Matriz<double> leerMatriz(const std::string& nombre) {
+    int filas, columnas;
+    std::cout << "--- Datos de la Matriz " << nombre << " ---" << std::endl;
+    std::cout << "Filas: ";
+    std::cin >> filas;
+    std::cout << "Columnas: ";
+    std::cin >> columnas;
+
+    Matriz<double> m(filas, columnas);
+    for (int i = 1; i <= filas; i++) {
+        for (int j = 1; j <= columnas; j++) {
+            double valor;
+            std::cout << "Valor [" << i << "][" << j << "]: ";
+            std::cin >> valor;
+            m.modMatriz(i, j, valor);
+        }
+    }
+    return m;
+}
+
+void printMenuCalculadora() {
+    CalculadoraAvanzada<double> calc;
+    calc.mostrarUsos(); // Muestra las capacidades al abrir la calculadora
+
+    int opcion = 0;
+    do {
+        std::cout << "\nMENU CALCULADORA" << std::endl;
+        std::cout << "1. Sumar numeros" << std::endl;
+        std::cout << "2. Restar numeros" << std::endl;
+        std::cout << "3. Multiplicar numeros" << std::endl;
+        std::cout << "4. Dividir numeros" << std::endl;
+        std::cout << "5. Sumar matrices" << std::endl;
+        std::cout << "6. Restar matrices" << std::endl;
+        std::cout << "7. Multiplicar matrices" << std::endl;
+        std::cout << "8. Determinante matriz" << std::endl;
+        std::cout << "9. Trasponer matriz" << std::endl;
+        std::cout << "10. Salir de calculadora" << std::endl;
+        std::cout << "Opcion: ";
+        std::cin >> opcion;
+
+        switch (opcion) {
+            case 1: {
+                double num1, num2;
+                std::cout << "Escribe el primer numero: "; std::cin >> num1;
+                std::cout << "Escribe el segundo numero: "; std::cin >> num2;
+                std::cout << "Resultado: " << calc.suma(num1, num2) << std::endl;
+                break;
+            }
+            case 2: {
+                double num1, num2;
+                std::cout << "Escribe el primer numero: "; std::cin >> num1;
+                std::cout << "Escribe el segundo numero: "; std::cin >> num2;
+                std::cout << "Resultado: " << calc.resta(num1, num2) << std::endl;
+                break;
+            }
+            case 3: {
+                double num1, num2;
+                std::cout << "Escribe el primer numero: "; std::cin >> num1;
+                std::cout << "Escribe el segundo numero: "; std::cin >> num2;
+                std::cout << "Resultado: " << calc.multiplica(num1, num2) << std::endl;
+                break;
+            }
+            case 4: {
+                double num1, num2;
+                std::cout << "Escribe el dividendo: "; std::cin >> num1;
+                std::cout << "Escribe el divisor: "; std::cin >> num2;
+                if (num2 != 0) {
+                    std::cout << "Resultado: " << calc.division(num1, num2) << std::endl;
+                } else {
+                    std::cout << "Error: No se puede dividir entre cero." << std::endl;
+                }
+                break;
+            }
+            case 5: {
+                Matriz<double> m1 = leerMatriz("1");
+                Matriz<double> m2 = leerMatriz("2");
+                Matriz<double> res = calc.sumaMatriz(m1, m2);
+                std::cout << "Resultado de la Suma:" << std::endl;
+                res.printMatriz();
+                break;
+            }
+            case 6: {
+                Matriz<double> m1 = leerMatriz("1");
+                Matriz<double> m2 = leerMatriz("2");
+                Matriz<double> res = calc.restaMatriz(m1, m2);
+                std::cout << "Resultado de la Resta:" << std::endl;
+                res.printMatriz();
+                break;
+            }
+            case 7: {
+                Matriz<double> m1 = leerMatriz("1");
+                Matriz<double> m2 = leerMatriz("2");
+                Matriz<double> res = calc.multiplicaMatriz(m1, m2);
+                std::cout << "Resultado de la Multiplicacion:" << std::endl;
+                res.printMatriz();
+                break;
+            }
+            case 8: {
+                Matriz<double> m = leerMatriz("A");
+                double det = calc.determinante(m);
+                // Si la matriz no es cuadrática, la función determinante ya imprime un mensaje y devuelve 0.
+                if (m.getFilas() == m.getColumnas()) {
+                    std::cout << "Determinante: " << det << std::endl;
+                }
+                break;
+            }
+            case 9: {
+                Matriz<double> m = leerMatriz("A");
+                Matriz<double> res = calc.traspuesta(m);
+                std::cout << "Matriz Traspuesta:" << std::endl;
+                res.printMatriz();
+                break;
+            }
+            case 10:
+                std::cout << "Saliendo de la calculadora..." << std::endl;
+                break;
+            default:
+                std::cout << "Opcion no valida." << std::endl;
+                break;
+        }
+    } while (opcion != 10);
+}
+
 // ---------------------------------------------------------------- usuarios
 
 Usuario* buscarUsuario(ListaGenerica<Usuario*>& listaUsuarios, const std::string& id) {
@@ -324,7 +449,7 @@ void menuAdministrator(ListaGenerica<Usuario*>& listaUsuarios, int& contadorId) 
                 listarUsuarios(listaUsuarios);
                 break;
             case 5: {
-                CalculadoraAvanzada<double> calc;
+                printMenuCalculadora();
                 break;
             }
             case 6:
@@ -368,7 +493,7 @@ void menuProfesor(Profesor* profesor, ListaGenerica<Usuario*>& listaUsuarios) {
                 eliminarEstudianteDeClase(profesor);
                 break;
             case 5: {
-                CalculadoraAvanzada<double> calc;
+                printMenuCalculadora();
                 break;
             }
             case 6:
@@ -412,7 +537,7 @@ void menuEstudiante(Estudiante* estudiante) {
                 verContenidoFichero(estudiante);
                 break;
             case 5: {
-                CalculadoraAvanzada<double> calc;
+                printMenuCalculadora();
                 break;
             }
             case 6:
@@ -431,6 +556,8 @@ void menuEstudiante(Estudiante* estudiante) {
         }
     } while (opcion != 6 && opcion != 7);
 }
+
+
 
 void printMenuPrincipal(ListaGenerica<Usuario*>& listaUsuarios, int& contadorId) {
     std::cout << "MENU PRINCIPAL" << std::endl;

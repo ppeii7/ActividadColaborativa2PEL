@@ -19,8 +19,8 @@ T CalculadoraAvanzada<T>::suma(T a, T b) {
     return a + b;
 }
 template<typename T>
-Matriz<ListaGenerica<T>> CalculadoraAvanzada<T>::suma(Matriz<ListaGenerica<T>> matriz1, Matriz<ListaGenerica<T>> matriz2) {
-    Matriz<ListaGenerica<T>>* result = new Matriz<ListaGenerica<T>>(matriz1.getFilas(), matriz1.getColumnas());
+Matriz<T> CalculadoraAvanzada<T>::sumaMatriz(Matriz<T> matriz1, Matriz<T> matriz2) {
+    Matriz<T>* result = new Matriz<T>(matriz1.getFilas(), matriz1.getColumnas());
     if (matriz2.getFilas() != matriz1.getFilas() || matriz2.getColumnas() != matriz1.getColumnas()) {
         std::cout << "Matrices de distinto tamaño no se pueden sumar" << std::endl; // Si los tamaños no son compatibles para la suma devuelvo la matriz llena de unos
     } else {
@@ -39,8 +39,8 @@ T CalculadoraAvanzada<T>::resta(T a, T b) {
 }
 
 template<typename T>
-Matriz<ListaGenerica<T>> CalculadoraAvanzada<T>::resta(Matriz<ListaGenerica<T>> matriz1, Matriz<ListaGenerica<T>> matriz2) {
-    Matriz<ListaGenerica<T>>* result = new Matriz<ListaGenerica<T>>(matriz1.getFilas(), matriz1.getColumnas());
+Matriz<T> CalculadoraAvanzada<T>::restaMatriz(Matriz<T> matriz1, Matriz<T> matriz2) {
+    Matriz<T>* result = new Matriz<T>(matriz1.getFilas(), matriz1.getColumnas());
     if (matriz2.getFilas() != matriz1.getFilas() || matriz2.getColumnas() != matriz1.getColumnas()) {
         std::cout << "Matrices de distinto tamaño no se pueden restar" << std::endl; // Si los tamaños no son compatibles para la resta devuelvo la matriz llena de unos
     } else {
@@ -59,8 +59,8 @@ T CalculadoraAvanzada<T>::multiplica(T a, T b) {
 }
 
 template<typename T>
-Matriz<ListaGenerica<T>> CalculadoraAvanzada<T>::multiplica(Matriz<ListaGenerica<T>> matriz1, Matriz<ListaGenerica<T>> matriz2) {
-    Matriz<ListaGenerica<T>>* result = new Matriz<ListaGenerica<T>>(matriz1.getFilas(), matriz2.getColumnas()); // Creo una matriz resultado con el tamaño de filas que la primera Matriz y las columnas de la segunda
+Matriz<T> CalculadoraAvanzada<T>::multiplicaMatriz(Matriz<T> matriz1, Matriz<T> matriz2) {
+    Matriz<T>* result = new Matriz<T>(matriz1.getFilas(), matriz2.getColumnas()); // Creo una matriz resultado con el tamaño de filas que la primera Matriz y las columnas de la segunda
     if (matriz2.getFilas() != matriz1.getColumnas()) {
         std::cout<< "No se pueden multiplicar" << std::endl; // Si sus tamaños son incompatibles devuelvo una matriz llena de unos
     }
@@ -89,8 +89,8 @@ T CalculadoraAvanzada<T>::division(T a, T b) {
 }
 
 template<typename T>
-Matriz<ListaGenerica<T>> CalculadoraAvanzada<T>::traspuesta(Matriz<ListaGenerica<T>> matriz) {
-    Matriz<ListaGenerica<T>>* result = new Matriz<ListaGenerica<T>>(matriz.getColumnas(), matriz.getFilas());
+Matriz<T> CalculadoraAvanzada<T>::traspuesta(Matriz<T> matriz) {
+    Matriz<T>* result = new Matriz<T>(matriz.getColumnas(), matriz.getFilas());
     for (int i = 1; i <= matriz.getFilas(); i++) {
         for (int j = 1; j <= matriz.getColumnas(); j++) {
             result->modMatriz(j, i, matriz.getFromM(i, j));
@@ -100,7 +100,7 @@ Matriz<ListaGenerica<T>> CalculadoraAvanzada<T>::traspuesta(Matriz<ListaGenerica
 }
 
 template<typename T>
-T CalculadoraAvanzada<T>::determinante(Matriz<ListaGenerica<T>> matriz) {
+T CalculadoraAvanzada<T>::determinante(Matriz<T> matriz) {
     T resultado = 0;
     if (matriz.getFilas() == matriz.getColumnas()) {
         const int n = matriz.getFilas();
@@ -114,7 +114,7 @@ T CalculadoraAvanzada<T>::determinante(Matriz<ListaGenerica<T>> matriz) {
                 break;
             default: // Si tiene 3 o mas filas uso el teorema de laplace hacer la matriz en otras mas chiquitas
                 int signo = 1;
-                Matriz<ListaGenerica<T>> subM;
+                Matriz<T> subM;
                 for (int i = 1; i <= n; i++) {
                     subM = this->subMatriz(matriz, i); // Saco submatriz quitando la fila 1 y la columna i
                     resultado += signo * matriz.getFromM(1, i) * this->determinante(subM); // Le sumo la multiplicacion del signo por el valor de la fila 1 y columna i por el determinante de la submatriz
@@ -128,8 +128,8 @@ T CalculadoraAvanzada<T>::determinante(Matriz<ListaGenerica<T>> matriz) {
 }
 
 template <typename T>
-Matriz<ListaGenerica<T>> CalculadoraAvanzada<T>::subMatriz(Matriz<ListaGenerica<T>> matriz1, int columnaFuera) {
-    Matriz<ListaGenerica<T>>* subMatriz = new Matriz<ListaGenerica<T>>(matriz1.getFilas()-1, matriz1.getColumnas()-1);
+Matriz<T> CalculadoraAvanzada<T>::subMatriz(Matriz<T> matriz1, int columnaFuera) {
+    Matriz<T>* subMatriz = new Matriz<T>(matriz1.getFilas()-1, matriz1.getColumnas()-1);
     bool columnaFueraPasada = false;
     for (int i = 2; i < matriz1.getFilas(); i++) { // Empieza desde 2 porque siempre estoy quitando la fila 1 y la 0 siempre la dejamos fuera por como esta hecho ListaGenerica
         for (int j = 1; j < matriz1.getColumnas(); j++) {
