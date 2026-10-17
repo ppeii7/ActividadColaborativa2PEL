@@ -49,3 +49,16 @@ int Profesor::getNumEstudiantes() {
 std::string Profesor::getIdEstudiante(int pos) {
     return clase.at(pos);
 }
+
+bool Profesor::calificarEstudiante(Estudiante* estudiante, const std::string& asignatura, double nota) {
+    bool retorno ;
+    if (estudiante == nullptr) {
+        retorno = false;
+    } else if (!tieneEstudiante(estudiante->getId())) { // Verificamos si el profesor tiene a este estudiante usando su ID
+        retorno = false;
+    } else { // Si es su alumno, delega la inserción real al estudiante
+        retorno = estudiante->addNota(asignatura, nota);
+    }
+
+    return retorno;
+}

@@ -1,0 +1,23 @@
+BIOLOGÍA - TEMA 2: LA CÉLULA
+--------------------------------
+
+1. Tipos de células:
+- PROCARIOTAS: Las más antiguas y simples. NO tienen núcleo definido (el ADN está suelto por el citoplasma). Ej: Bacterias.
+- EUCARIOTAS: Más complejas, SÍ tienen núcleo. Se dividen en:
+   * Animal: Tienen centriolos (para dividirse).
+   * Vegetal: Tienen pared celular (celulosa), cloroplastos (para la fotosíntesis) y una vacuola gigante.
+
+2. Orgánulos importantes (¡suele caer en relacionar columnas!):
+- Núcleo: El cerebro. Guarda el ADN.
+- Mitocondrias: La "central energética". Hacen la respiración celular (generan energía/ATP).
+- Ribosomas: Fabrican proteínas.
+- Retículo Endoplasmático: 
+   * Rugoso (tiene ribosomas pegados): síntesis de proteínas.
+   * Liso (sin ribosomas): síntesis de lípidos (grasas).
+- Aparato de Golgi: Empaqueta y envía sustancias al exterior de la célula.
+
+3. Membrana plasmática:
+- Es semipermeable (deja pasar unas cosas sí y otras no).
+- Está formada por una bicapa de lípidos con proteínas incrustadas.
+
+*¡OJO! Repasar el dibujo de la célula animal para saber ubicar las partes en el examen práctico.*

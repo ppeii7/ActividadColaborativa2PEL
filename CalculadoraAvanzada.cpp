@@ -107,10 +107,10 @@ T CalculadoraAvanzada<T>::determinante(Matriz<T> matriz) {
 
         switch(n) {
             case 1: // Si solo tiene una fila, igualo resultado a ese valor
-                resultado = matriz.getFromM(0, 0);
+                resultado = matriz.getFromM(1,1);
                 break;
             case 2: // Si tiene dos filas igualo resultado a la multiplicacion en diagonal de izq a derecha menos la otra diagonal
-                resultado = matriz.getFromM(0, 0) * matriz.getFromM(1, 1) - matriz.getFromM(1, 0) * matriz.getFromM(0,1);
+                resultado = matriz.getFromM(1, 1) * matriz.getFromM(2, 2) - matriz.getFromM(2, 1) * matriz.getFromM(1,2);
                 break;
             default: // Si tiene 3 o mas filas uso el teorema de laplace hacer la matriz en otras mas chiquitas
                 int signo = 1;
@@ -131,8 +131,8 @@ template <typename T>
 Matriz<T> CalculadoraAvanzada<T>::subMatriz(Matriz<T> matriz1, int columnaFuera) {
     Matriz<T>* subMatriz = new Matriz<T>(matriz1.getFilas()-1, matriz1.getColumnas()-1);
     bool columnaFueraPasada = false;
-    for (int i = 2; i < matriz1.getFilas(); i++) { // Empieza desde 2 porque siempre estoy quitando la fila 1 y la 0 siempre la dejamos fuera por como esta hecho ListaGenerica
-        for (int j = 1; j < matriz1.getColumnas(); j++) {
+    for (int i = 2; i <= matriz1.getFilas(); i++) { // Empieza desde 2 porque siempre estoy quitando la fila 1 y la 0 siempre la dejamos fuera por como esta hecho ListaGenerica
+        for (int j = 1; j <= matriz1.getColumnas(); j++) {
             if (j != columnaFuera && columnaFueraPasada == false) { // Si todavia no hemos pasado la columna que queremos quitar
                 subMatriz->modMatriz(i-1, j, matriz1.getFromM(i,j));
             } else if (j!= columnaFuera && columnaFueraPasada == true) { // Si ya pasamos la columna que queriamos quitar le resto 1 a j de la submatriz para que no se vaya fuera de su rango

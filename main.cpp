@@ -8,6 +8,17 @@
 #include "Matriz.h"
 #include "CalculadoraAvanzada.h"
 
+/* Ficheros de ejemplo:
+ *   ../ficheros/apuntesBiologia.txt
+ *   ../ficheros/apuntesFisica.txt
+ *   ../ficheros/apuntesHistoria.txt
+ *   ../ficheros/apuntesLiteratura.txt
+ *
+ *  Usuarios activados de ejemplo:
+ *  Admin: A0000
+ *  Profesor: P0001
+ *  Estudiante: E0001
+ */
 
 static bool fin = false;
 
@@ -379,6 +390,34 @@ void eliminarEstudianteDeClase(Profesor* profesor) {
     }
 }
 
+void anadirNotaAEstudiante(Profesor* profesor, ListaGenerica<Usuario*>& listaUsuarios) {
+    std::string id;
+    std::cout << "Id del estudiante: ";
+    std::cin >> id;
+
+    // 1. El main solo se encarga de buscar el estudiante en la base de datos global
+    Estudiante* estudiante = buscarEstudiante(listaUsuarios, id);
+    if (estudiante == nullptr) {
+        std::cout << "Estudiante no encontrado en el sistema." << std::endl;
+        return;
+    }
+
+    std::string asignatura;
+    double nota;
+    std::cout << "Nombre de la asignatura: ";
+    std::cin >> asignatura;
+    std::cout << "Nota (0-10): ";
+    std::cin >> nota;
+
+    // 2. La lógica de negocio y validación se encapsula en la clase Profesor
+    if (profesor->calificarEstudiante(estudiante, asignatura, nota)) {
+        std::cout << "Nota anadida correctamente al estudiante " << estudiante->getNombre() << "." << std::endl;
+    } else {
+        std::cout << "Error: El estudiante no esta en tu clase o la nota es invalida." << std::endl;
+    }
+}
+
+
 // -------------------------------------------------------------- estudiante
 
 void cargarFicheroEstudiante(Estudiante* estudiante) {
@@ -386,7 +425,7 @@ void cargarFicheroEstudiante(Estudiante* estudiante) {
     std::cout << "Ruta del fichero .txt: ";
     std::cin >> ruta;
 
-    Fichero fichero(ruta);                       // por valor: sin new
+    Fichero fichero(ruta);
     if (!fichero.estaCargado()) {
         std::cout << "No se pudo leer el fichero." << std::endl;
     } else {
@@ -419,7 +458,8 @@ void verContenidoFichero(Estudiante* estudiante) {
     }
 }
 
-// -------------------------------------------------------------------- menus
+
+// ------------------- Menu Admin ------------------------------
 
 void menuAdministrator(ListaGenerica<Usuario*>& listaUsuarios, int& contadorId) {
     int opcion = 0;
@@ -465,17 +505,21 @@ void menuAdministrator(ListaGenerica<Usuario*>& listaUsuarios, int& contadorId) 
     } while (opcion != 6 && opcion != 7);
 }
 
+// ------------- Menu Profesor ---------------
+
+
 void menuProfesor(Profesor* profesor, ListaGenerica<Usuario*>& listaUsuarios) {
     int opcion = 0;
     do {
-        std::cout << "Bienvenido profesor " << profesor->getNombre() << std::endl;
+        std::cout << "\nBienvenido profesor " << profesor->getNombre() << std::endl;
         std::cout << "1. Ver datos de mi clase" << std::endl;
         std::cout << "2. Ver notas de estudiantes" << std::endl;
         std::cout << "3. Anadir estudiante a mi clase" << std::endl;
         std::cout << "4. Eliminar estudiante de mi clase" << std::endl;
-        std::cout << "5. Calculadora" << std::endl;
-        std::cout << "6. Cerrar sesion" << std::endl;
-        std::cout << "7. Exit" << std::endl;
+        std::cout << "5. Anadir nota a un estudiante" << std::endl; // NUEVA OPCIÓN
+        std::cout << "6. Calculadora" << std::endl;
+        std::cout << "7. Cerrar sesion" << std::endl;
+        std::cout << "8. Exit" << std::endl;
         std::cout << "Opcion: ";
         std::cin >> opcion;
 
@@ -492,22 +536,28 @@ void menuProfesor(Profesor* profesor, ListaGenerica<Usuario*>& listaUsuarios) {
             case 4:
                 eliminarEstudianteDeClase(profesor);
                 break;
-            case 5: {
+            case 5:
+                anadirNotaAEstudiante(profesor, listaUsuarios); // LLAMADA A LA NUEVA FUNCIÓN
+                break;
+            case 6: {
                 printMenuCalculadora();
                 break;
             }
-            case 6:
+            case 7:
                 std::cout << "Cerrando sesion..." << std::endl;
                 break;
-            case 7:
+            case 8:
                 std::cout << "Saliendo..." << std::endl;
                 fin = true;
+                break; // Añadido el break faltante en la lógica original
             default:
                 std::cout << "Opcion no valida." << std::endl;
                 break;
         }
-    } while (opcion != 6 && opcion != 7);
+    } while (opcion != 7 && opcion != 8); // Actualizada la condición de salida
 }
+
+// -------- Menu Estudiante ------------
 
 void menuEstudiante(Estudiante* estudiante) {
     int opcion = 0;
@@ -603,12 +653,32 @@ int main() {
     int contadorId = 2;                                  // A0000 y P0001 ya usados
 
     Usuario* admin = new Usuario("A0000", "Admin", "");
-    if (!listaUsuarios.add(admin)) liberarUsuario(admin);
+    if (!listaUsuarios.add(admin)) {
+        liberarUsuario(admin);
+    }
     Profesor* profesor1 = new Profesor("P0001", "Jorge", "Garcia");
-    if (!listaUsuarios.add(profesor1)) liberarUsuario(profesor1);
+    if (!listaUsuarios.add(profesor1)) {
+        liberarUsuario(profesor1);
+    }
+    Estudiante* estudiante1 = new Estudiante("E0001", "Pepe", "Mora");
+    if (!listaUsuarios.add(estudiante1)) {
+        liberarUsuario(estudiante1);
+    }
     while (fin==false) {
         printMenuPrincipal(listaUsuarios, contadorId);
     }
     liberarTodos(listaUsuarios);                         // siempre al final
     return 0;
 }
+
+/* Ficheros de ejemplo:
+ *   ../ficheros/apuntesBiologia.txt
+ *   ../ficheros/apuntesFisica.txt
+ *   ../ficheros/apuntesHistoria.txt
+ *   ../ficheros/apuntesLiteratura.txt
+ *
+ *  Usuarios activados de ejemplo:
+ *  Admin: A0000
+ *  Profesor: P0001
+ *  Estudiante: E0001
+ */

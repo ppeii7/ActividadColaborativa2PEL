@@ -6,24 +6,26 @@
 #define ACTIVIDADCOLABORATIVA2_PROFESOR_H
 #include "ListaGenerica.h"
 #include "Usuario.h"
+#include "Estudiante.h"
 
 
 class Profesor : public Usuario{
 
 private:
-ListaGenerica<std::string> clase;
+    ListaGenerica<std::string> clase;
 
 
 
 public:
-Profesor();
-Profesor(std::string id, std::string nombre, std::string apellido);
+    Profesor();
+    Profesor(std::string id, std::string nombre, std::string apellido);
 
-bool inscribirEstudiante(std::string idEstudiante);
-bool quitarEstudiante(std::string idEstudiante);
-bool tieneEstudiante(std::string idEstudiante);
-int getNumEstudiantes();
-std::string getIdEstudiante(int pos);
+    bool inscribirEstudiante(std::string idEstudiante);
+    bool quitarEstudiante(std::string idEstudiante);
+    bool tieneEstudiante(std::string idEstudiante);
+    int getNumEstudiantes();
+    std::string getIdEstudiante(int pos);
+    bool calificarEstudiante(Estudiante* estudiante, const std::string& asignatura, double nota);
 };
 
 

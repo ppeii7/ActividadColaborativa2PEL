@@ -1,0 +1,27 @@
+FÍSICA - TEMA 3: DINÁMICA (LEYES DE NEWTON)
+-------------------------------------------
+
+*** CONCEPTOS BÁSICOS ***
+- Fuerza: Toda causa capaz de deformar un cuerpo o cambiar su estado de movimiento. Se mide en Newtons ($N$).
+- Masa: Cantidad de materia. Se mide en $kg$. (NO CONFUNDIR CON EL PESO).
+
+*** LAS 3 LEYES DE NEWTON ***
+
+1ª LEY (Ley de la Inercia):
+- Si sobre un cuerpo no actúa ninguna fuerza (o la suma es $0$), el cuerpo se queda como estaba: o en reposo, o en Movimiento Rectilíneo Uniforme (MRU).
+
+2ª LEY (Principio Fundamental de la Dinámica):
+- La fuerza aplicada es proporcional a la aceleración.
+- FÓRMULA CLAVE: $F = m \cdot a$
+- $F$ = Fuerza ($N$)
+- $m$ = Masa ($kg$)
+- $a$ = Aceleración ($m/s^2$)
+
+3ª LEY (Acción y Reacción):
+- Si aplicas una fuerza a un objeto, el objeto te devuelve una fuerza igual y en sentido contrario. (Por eso duele si le pegas un puñetazo a la pared).
+
+*** EL PESO ***
+- Es la fuerza con la que la Tierra nos atrae.
+- Fórmula: $P = m \cdot g$ (donde $g = 9.8 \ m/s^2$ en la Tierra).
+
+*Recordatorio de problemas: Hay que hacer siempre el diagrama de fuerzas (las flechitas) antes de empezar a calcular, no olvidar la fuerza de rozamiento.*
